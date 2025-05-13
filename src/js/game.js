@@ -16,16 +16,28 @@ export class Game extends Engine {
 
     startGame() {
         console.log("start de game!")
+        for (let i = 0; i < 20; i++) {
         const fish = new Actor()
         fish.graphics.use(Resources.Fish.toSprite())
-        fish.pos = new Vector(500, 300)
-        fish.vel = new Vector(-10,0)
+        fish.pos = new Vector(Math.random () * 1280, Math.random () * 720)
+        fish.vel = new Vector(Math.random () * 200 - 100, Math.random () * 400 - 200)
         fish.events.on("exitviewport", (e) => this.fishLeft(e))
         this.add(fish)
+
+        const fishTwo = new Actor()
+        fishTwo.graphics.use(Resources.FishTwo.toSprite());
+        fishTwo.pos = new Vector(Math.random () * 1280, Math.random () * 720);
+        fishTwo.vel = new Vector(Math.random () * 200 - 100, Math.random () * 400 - 200);
+        fishTwo.events.on("exitviewport", (e) => this.fishLeft(e));
+        this.add(fishTwo);
+
+        fish.scale = new Vector(0.5, 0.5);
+        }
     }
 
     fishLeft(e) {
-        e.target.pos = new Vector(1350, 300)
+        e.tatget.pos = new Vector(Math.random () * 1280, Math.random () * 720)
+        e.target.vel = new Vector(Math.random () * 200 - 100, Math.random () * 400 - 200)
     }
 }
 
